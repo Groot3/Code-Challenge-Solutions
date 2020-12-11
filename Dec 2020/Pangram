@@ -1,0 +1,30 @@
+/*
+The Modern Javascript Bootcamp Functions 3
+
+A Pangram is a sentence that contains every letter of the alphabet.
+Write a function called isPangram, which checks to see if a given sentence
+contains every letter of the alphabet. Make sure you ignore string casing.
+
+12/10/2020
+*/
+
+function isPangram(Pangram) {
+    isPangram = true
+    const formattedPangram = Pangram.toLowerCase()
+    const alphabet = [
+        'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'
+    ]
+    const iterator = alphabet.values();
+    for (let letter of iterator) {
+        if (formattedPangram.includes(letter)) {
+            console.log(`Sentence contains ${letter}`)
+        } else {
+            console.log(`Sentence contains no ${letter}`)
+            isPangram = false
+            //console.log(iterator)
+        }
+    }
+    return isPangram
+}
+
+isPangram('ACCDEFGHAAAAAAAAAAAAAAAAAAAAAAAAZ')
