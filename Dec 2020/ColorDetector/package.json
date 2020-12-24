@@ -1,0 +1,14 @@
+{
+  "name": "colordetector",
+  "version": "1.0.0",
+  "description": "Detect Colors",
+  "main": "cdetect.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Groot",
+  "license": "ISC",
+  "dependencies": {
+    "robotjs": "^0.6.0"
+  }
+}
