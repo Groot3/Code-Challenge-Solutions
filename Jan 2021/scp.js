@@ -1,8 +1,4 @@
-// Project to print a random SCP to a discord server.
-// Very close to being functional, my first real implementation of
-// discord.js
-
-// Groot
+//Groot
 //1/6/2021
 
 const keys = require('./config.json')
@@ -33,18 +29,21 @@ client.on('message', message => {
     }
 
     for (command of commands) {
-        if (message.content.includes(command) || message.content != (command)) {
-
-            // Splices string after the !scp command
-            // TODO: Sanitize input
-            // TODO: Verify SCP "exists"
+        if (message.content.includes(command) && message.content != (command)) {
             RequestedSCP = message.content
-            // TODO: change 4 to command.length
-            RequestedSCP.slice(-1,4)
-            if (isNumeric(RequestedSCP) == true) {
-                console.log("Test 2")
-                message.channel.send(`http://www.scpwiki.com/scp-${RequestedSCP}`)
+            RequestedSCP = RequestedSCP.replace(`${command}`, "").replace(" ","") 
+            // formats spaces and command out of string
 
+            if (isNumeric(RequestedSCP) == true) {
+                // Checks to see if the formatted string is a number
+                if (RequestedSCP < 5000) {
+                    message.channel.send(`http://www.scpwiki.com/scp-${RequestedSCP}`)
+                } else 
+                {
+                    message.channel.send(`Error: try a SCP within range 1-4999 instead.`)
+                }
+            } else {
+                message.channel.send(`Error: Command not recognized. Try entering a number.`)
             }
             
         }
