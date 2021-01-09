@@ -4,9 +4,9 @@
 const keys = require('./config.json')
 const discord = require('discord.js')
 const client = new discord.Client()
-const cmds = ["!scp"]
 const SCPscrape = require('./scrape.js')
 
+const cmds = ["!scp"]
 
 client.once('ready', () => {
     console.log("Ready.")
@@ -43,8 +43,13 @@ try {
                             msg.channel.send(`http://www.scpwiki.com/scp-0${ReqSCP}`) 
                             // fix for:SCP links must be formatted ending in -XXX, not -XX.
 
+                        } else if (ReqSCP < 10) {
+                            msg.channel.send(`http://www.scpwiki.com/scp-00${ReqSCP}`)
+                            // allows SCP 1-10 to be generated.
+                            // TODO: scp 1 probably gives an issue.
                         } else {
                             msg.channel.send(`http://www.scpwiki.com/scp-${ReqSCP}`)
+                            //sends requested SCP
                         }
                     } else 
                     {
@@ -63,9 +68,9 @@ try {
                     return result
                 }
 
-                async function msgSend(d) {
-                    response = await d
-                    console.log(d)
+                async function msgSend(dsc) {
+                    response = await dsc
+                    console.log(dsc)
                 }
                 msg.channel.send((`http://www.scpwiki.com/scp-${RandomSCP}`))
                 msgSend(description())
