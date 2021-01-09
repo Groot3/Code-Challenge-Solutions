@@ -57,13 +57,18 @@ try {
                 
             }
 
-            let desc = ''
             if (msg.content === (cmd)) { // if no condition is given:
-                async function getdescription() {
-                    await SCPscrape(`http://www.scpwiki.com/scp-${RandomSCP}`)
+                const description = async () => {
+                    result = await SCPscrape (`http://www.scpwiki.com/scp-${RandomSCP}`)
+                    return result
                 }
-                
-                msg.channel.send(`http://www.scpwiki.com/scp-${RandomSCP}` + "\n" + getdescription())
+
+                async function msgSend(d) {
+                    response = await d
+                    console.log(d)
+                }
+                msg.channel.send((`http://www.scpwiki.com/scp-${RandomSCP}`))
+                msgSend(description())
             }
         }
     })
